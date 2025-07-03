@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>වසර 3ක සංවත්සරය</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e8f5e9;
+            color: #1b5e20;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #2e7d32;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        .date {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #388e3c;
+            animation: slideUp 1.5s ease-in-out;
+        }
+        
+        .message {
+            background-color: #c8e6c9;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            animation: fadeIn 3s ease-in-out;
+            text-align: left;
+            line-height: 1.6;
+        }
+        
+        .heart {
+            color: #e53935;
+            font-size: 1.5em;
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 10px solid #81c784;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            animation: rotate 10s linear infinite;
+            background-color: #a5d6a7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .counter {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            animation: fadeIn 4s ease-in-out;
+        }
+        
+        .counter-item {
+            background-color: #66bb6a;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 80px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .counter-number {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        .flowers {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%234caf50" d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M15.5,8C16.3,8 17,8.7 17,9.5C17,10.3 16.3,11 15.5,11C14.7,11 14,10.3 14,9.5C14,8.7 14.7,8 15.5,8M8.5,8C9.3,8 10,8.7 10,9.5C10,10.3 9.3,11 8.5,11C7.7,11 7,10.3 7,9.5C7,8.7 7.7,8 8.5,8M12,11C13.1,11 14,11.9 14,13C14,14.1 13.1,15 12,15C10.9,15 10,14.1 10,13C10,11.9 10.9,11 12,11M19,17V19H5V17C5,14.8 8.1,13 12,13C15.9,13 19,14.8 19,17Z" /></svg>');
+            background-size: contain;
+            animation: falling 10s linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        button {
+            background-color: #43a047;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        button:hover {
+            background-color: #2e7d32;
+            transform: scale(1.05);
+        }
+        
+        .hidden-message {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #a5d6a7;
+            border-radius: 15px;
+            animation: fadeIn 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>වසර 3ක ප්‍රේමමය සංවත්සරය!</h1>
+        <div class="date">
+            2022 ජූලි 29 - 2025 ජූලි 29
+        </div>
+        
+        <div class="photo-frame">
+            <!-- Replace with your photo -->
+            <div style="font-size: 3em;">❤️</div>
+        </div>
+        
+        <div class="counter">
+            <div class="counter-item">
+                <div class="counter-number">3</div>
+                <div>වසර</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number">36</div>
+                <div>මාස</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number">1095</div>
+                <div>දින</div>
+            </div>
+        </div>
+        
+        <div class="message">
+            <p>ප්‍රියතමයා,</p>
+            <p>මෙම වසර තුන තුළ ඔබ සමඟ ගතකළ සෑම මොහොතක්ම මගේ ජීවිතයේ ඉතාමත් වටිනා මතකයන් බවට පත්ව ඇත. ඔබේ සිනහව, ඔබේ ආදරය, ඔබේ සහයෝගය - මේ සියල්ල මට ලැබීම ජීවිතයේ විශාලතම ආශිර්වාදයයි.</p>
+            <p>අපේ ප්‍රේම කතාවේ ඊළඟ පරිච්ඡේදය සඳහා මම බලාපොරොත්තු වෙමි. ඔබ සමඟ ගතකරන සෑම දිනයක්ම නව ආශ්චර්යයක් ගෙන එයි.</p>
+            <p>සදහටම ඔබේ,</p>
+            <p><span class="heart">❤️</span></p>
+        </div>
+        
+        <button id="surpriseBtn">විශේෂ පණිවුඩය</button>
+        
+        <div class="hidden-message" id="hiddenMessage">
+            <h3>ඔබටම විශේෂ!</h3>
+            <p>මෙම වසර තුන තුළ ඔබ මට ලබාදුන් සෑම දෙයකටම ස්තූතියි. අපි එක්ව ජීවත් වූ සෑම මොහොතක්ම මට අමතක නොවනු ඇත. අපි තවත් බොහෝ සංවත්සර එක්ව සමරමු!</p>
+            <p>මම ඔබට ආදරය කරමි, ඊළඟ වසර තුනටත්, ඊළඟ ජීවිත කාලයටත්...</p>
+        </div>
+    </div>
+    
+    <script>
+        // Create falling flowers
+        function createFlowers() {
+            for (let i = 0; i < 20; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'flowers';
+                flower.style.left = Math.random() * 100 + 'vw';
+                flower.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                flower.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(flower);
+            }
+        }
+        
+        // Show hidden message
+        document.getElementById('surpriseBtn').addEventListener('click', function() {
+            const message = document.getElementById('hiddenMessage');
+            if (message.style.display === 'block') {
+                message.style.display = 'none';
+                this.textContent = 'විශේෂ පණිවුඩය';
+            } else {
+                message.style.display = 'block';
+                this.textContent = 'පණිවුඩය වසන්න';
+                // Add confetti effect
+                createFlowers();
+            }
+        });
+        
+        // Initialize
+        window.onload = function() {
+            createFlowers();
+        };
+    </script>
+</body>
+</html>
